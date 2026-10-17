@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd ~/Desktop/troid-x && vercel --yes --prod 2>&1\",\"timeout\":120000,\"description\":\"Deploy to Vercel in production\"}",
+  "error": "Exit code 1\nVercel CLI 50.23.2\nLoading scopes…\n{\n  \"status\": \"action_required\",\n  \"reason\": \"missing_scope\",\n  \"message\": \"Provide --scope or --team explicitly. No default is applied in non-interactive mode.\",\n  \"choices\": [\n    {\n      \"id\": \"team_93ajY0Iuy1HPGY3Pi8FWKMxb\",\n      \"name\": \"badarmadnis-projects\"\n    }\n  ],\n  \"next\": [\n    {\n      \"command\": \"vercel link --prod --scope badarmadnis-projects\",\n      \"when\": \"Link first (then run any command without --scope)\"\n    },\n    {\n      \"comm...",
+  "timestamp": "2026-10-17T10:01:20.894Z",
+  "retry_count": 1
+}

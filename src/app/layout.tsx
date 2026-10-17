@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,7 +21,6 @@ export const metadata: Metadata = {
   title: "Troid X — AI-Powered SaaS Solutions",
   description:
     "Troid X builds intelligent software products and offers cutting-edge AI development, cloud engineering, and digital transformation services.",
-  keywords: ["AI", "SaaS", "Software Development", "Troid X", "Machine Learning", "Cloud"],
 };
 
 export default function RootLayout({
@@ -30,7 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
-      <body className="min-h-screen bg-black text-white font-[family-name:var(--font-inter)] antialiased">
+      <body className="min-h-screen bg-black text-white font-[family-name:var(--font-inter)] antialiased grain">
+        <CustomCursor />
         <Navbar />
         <main>{children}</main>
         <Footer />

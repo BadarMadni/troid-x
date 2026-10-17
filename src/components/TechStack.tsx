@@ -1,43 +1,48 @@
 "use client";
 
-import { motion } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const technologies = [
   "React", "Next.js", "TypeScript", "Python", "Node.js", "Go",
   "TensorFlow", "PyTorch", "AWS", "GCP", "Docker", "Kubernetes",
-  "PostgreSQL", "Redis", "GraphQL", "Rust",
+  "PostgreSQL", "Redis", "GraphQL", "Rust", "Swift", "Flutter",
 ];
 
 export default function TechStack() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
   return (
-    <section className="relative py-24 overflow-hidden border-t border-b border-white/[0.04]">
+    <section ref={ref} className="relative py-24 overflow-hidden">
+      {/* Divider line with glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] glow-line" />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-14">
-          <span className="text-xs text-white/20 uppercase tracking-[0.3em] font-medium">
-            Technologies We Work With
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 1 }}
+          className="text-center mb-12"
+        >
+          <span className="text-[10px] text-white/15 uppercase tracking-[0.4em] font-medium">
+            Our Technology Stack
           </span>
-        </AnimatedSection>
+        </motion.div>
 
-        <div className="relative">
-          {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-10" />
-
-          <motion.div
-            animate={{ x: [0, -1200] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="flex gap-6"
-          >
-            {[...technologies, ...technologies, ...technologies].map((tech, i) => (
-              <div
-                key={`${tech}-${i}`}
-                className="shrink-0 px-6 py-3 rounded-full border border-white/[0.06] bg-white/[0.02] text-sm text-white/30 hover:text-white/60 hover:border-white/[0.15] transition-all duration-300 cursor-default"
-              >
-                {tech}
-              </div>
-            ))}
-          </motion.div>
+        <div className="flex flex-wrap justify-center gap-3">
+          {technologies.map((tech, i) => (
+            <motion.div
+              key={tech}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.4, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+              className="px-5 py-2.5 rounded-full border border-white/[0.04] bg-white/[0.01] text-sm text-white/20 hover:text-white/60 hover:border-white/[0.15] hover:bg-white/[0.04] transition-all duration-500"
+              data-hover
+            >
+              {tech}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
